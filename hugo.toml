@@ -7,7 +7,8 @@ disableKinds = ['taxonomy', 'term']
 
 [params]
   github = "https://github.com/rorycaraher/"
-  soundcloud = "https://soundcloud.com/corner_nltl/"
+  linkedin = "https://www.linkedin.com/in/rory-caraher/"
+  soundcloud = "https://soundcloud.com/nothinglefttolearn/"
 
 [[menus.main]]
 name = 'Home'
@@ -15,11 +16,11 @@ url = '/'
 weight = 1
 
 [[menus.main]]
-name = 'Work'
-url = '/work/'
+name = 'Projects'
+url = '/projects/'
 weight = 2
 
 [[menus.main]]
-name = 'Extras'
-url = '/extras/'
+name = 'CV'
+url = '/cv/'
 weight = 3

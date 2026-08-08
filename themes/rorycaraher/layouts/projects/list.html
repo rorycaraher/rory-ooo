@@ -1,0 +1,16 @@
+{{ define "main" }}
+<h1>{{ .Title }}</h1>
+{{ .Content }}
+
+<div class="mg-row card-grid">
+    {{ range .Pages }}
+    {{ $repo := .Params.repo }}
+    {{ with index site.Data.projects $repo }}
+    <a class="mg-x12 mg-m4 card-col card" href="{{ $repo }}" target="_blank" rel="noopener noreferrer">
+        <h3>{{ .name }}</h3>
+        <p class="card-desc">{{ .description }}</p>
+    </a>
+    {{ end }}
+    {{ end }}
+</div>
+{{ end }}

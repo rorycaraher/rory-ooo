@@ -1,24 +1,3 @@
 {{ define "main" }}
-<section class="section--hero">
-    {{ with .Params.bio }}
-    <p class="bio-text">{{ . }}</p>
-    {{ end }}
-    {{ with .Params.role }}
-    <p class="text-muted">{{ . }}</p>
-    {{ end }}
-    <div class="social-links">
-        {{ with .Params.github }}<a
-            href="{{ . }}"
-            target="_blank"
-            rel="noopener noreferrer"
-            >GitHub</a
-        >{{ end }}
-        <a href="/work/">Work history &rarr;</a>
-    </div>
-</section>
-
-{{ with .Content }}
-<section class="section">
-    <div class="text-muted">{{ . }}</div>
-</section>
-{{ end }} {{ end }}
+<section class="section">{{ .Content }}</section>
+{{ end }}

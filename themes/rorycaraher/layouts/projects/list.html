@@ -9,6 +9,7 @@
     {{ with index site.Data.projects $repo }}
     {{ $hasProjects = true }}
     <a class="mg-x12 mg-m4 card-col card" href="{{ $repo }}" target="_blank" rel="noopener noreferrer">
+        {{ with .language }}<span class="card-lang">{{ . }}</span>{{ end }}
         <h3>{{ .name }}</h3>
         <p class="card-desc">{{ .description }}</p>
     </a>

@@ -22,6 +22,7 @@ repos=$(grep -hoE '^repo = "[^"]+"' "$CONTENT_DIR"/*.md | sed -E 's/^repo = "(.*
       ($url | quote) + ":",
       "  name: " + (.name | quote),
       "  description: " + ((.description // "No description provided") | quote),
+      "  language: " + ((.language // "") | quote),
       ""
     '
   done

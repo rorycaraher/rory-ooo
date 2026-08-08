@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "roboto",
+        "createdAt": "2026-08-08T19:45:09.295Z",
+        "reason": "User confirmed Roboto is intentional (kept during /impeccable typeset after audit found it wasn't loading; delivery fixed via self-hosted @font-face)"
+      }
+    ]
+  }
+}

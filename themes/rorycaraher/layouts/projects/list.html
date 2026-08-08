@@ -2,10 +2,12 @@
 <h1>{{ .Title }}</h1>
 {{ .Content }}
 
+{{ $hasProjects := false }}
 <div class="mg-row card-grid">
     {{ range .Pages }}
     {{ $repo := .Params.repo }}
     {{ with index site.Data.projects $repo }}
+    {{ $hasProjects = true }}
     <a class="mg-x12 mg-m4 card-col card" href="{{ $repo }}" target="_blank" rel="noopener noreferrer">
         <h3>{{ .name }}</h3>
         <p class="card-desc">{{ .description }}</p>
@@ -13,4 +15,7 @@
     {{ end }}
     {{ end }}
 </div>
+{{ if not $hasProjects }}
+<p class="card-empty">No projects to show right now.</p>
+{{ end }}
 {{ end }}

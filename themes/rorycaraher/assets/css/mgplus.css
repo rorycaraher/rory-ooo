@@ -143,50 +143,72 @@ a:focus-visible {
   margin-top: 3.2rem;
 }
 
-.card-grid {
-  gap: 1.6rem 0;
+.project-list {
+  margin-top: 3.2rem;
+  border-top: 0.1rem solid var(--color-border);
 }
 
-.card-col {
-  padding: 0.8rem;
-}
-
-.card {
-  display: block;
-  border: 0.1rem solid var(--color-border);
-  border-radius: 0.4rem;
-  padding: 2rem 2.4rem;
-  height: 100%;
+.project-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 2.4rem 0;
+  border-bottom: 0.1rem solid var(--color-border);
   color: inherit;
   text-decoration: none;
   transition: border-color 0.15s ease;
 }
 
-.card:hover,
-.card:focus-visible {
+@media (min-width: 769px) {
+  .project-row {
+    flex-direction: row;
+    gap: 3.2rem;
+    padding: 3.2rem 0;
+  }
+}
+
+.project-row:hover,
+.project-row:focus-visible {
   border-color: var(--color-primary);
 }
 
-.card-lang {
-  display: block;
+.project-lang {
+  flex: 0 0 auto;
   color: var(--color-text-muted);
   font-size: 1.2rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  margin-bottom: 0.8rem;
+  transition: color 0.15s ease;
 }
 
-.card h3 {
+@media (min-width: 769px) {
+  .project-lang {
+    flex: 0 0 12rem;
+    padding-top: 0.4rem;
+  }
+}
+
+.project-row:hover .project-lang,
+.project-row:focus-visible .project-lang {
+  color: var(--color-primary);
+}
+
+.project-row-body {
+  min-width: 0;
+}
+
+.project-row-body h3 {
   margin-top: 0;
+  margin-bottom: 0.4rem;
   overflow-wrap: break-word;
 }
 
-.card-desc {
+.project-desc {
   color: var(--color-text-muted);
   margin-bottom: 0;
   overflow-wrap: break-word;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

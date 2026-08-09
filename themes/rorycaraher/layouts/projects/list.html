@@ -3,15 +3,17 @@
 {{ .Content }}
 
 {{ $hasProjects := false }}
-<div class="mg-row card-grid">
+<div class="project-list">
     {{ range .Pages }}
     {{ $repo := .Params.repo }}
     {{ with index site.Data.projects $repo }}
     {{ $hasProjects = true }}
-    <a class="mg-x12 mg-m4 card-col card" href="{{ $repo }}" target="_blank" rel="noopener noreferrer">
-        {{ with .language }}<span class="card-lang">{{ . }}</span>{{ end }}
-        <h3>{{ .name }}</h3>
-        <p class="card-desc">{{ .description }}</p>
+    <a class="project-row" href="{{ $repo }}" target="_blank" rel="noopener noreferrer">
+        <span class="project-lang">{{ with .language }}{{ . }}{{ end }}</span>
+        <span class="project-row-body">
+            <h3>{{ .name }}</h3>
+            <p class="project-desc">{{ .description }}</p>
+        </span>
     </a>
     {{ end }}
     {{ end }}

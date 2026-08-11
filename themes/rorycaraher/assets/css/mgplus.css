@@ -213,6 +213,52 @@ a:focus-visible {
   overflow: hidden;
 }
 
+.track-list {
+  margin-top: 3.2rem;
+  border-top: 0.1rem solid var(--color-border);
+}
+
+.track-row {
+  display: flex;
+  flex-direction: column;
+  padding: 2.4rem 0;
+  border-bottom: 0.1rem solid var(--color-border);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.15s ease;
+}
+
+@media (min-width: 769px) {
+  .track-row {
+    padding: 3.2rem 0;
+  }
+}
+
+.track-row:hover,
+.track-row:focus-visible {
+  border-color: var(--color-primary);
+}
+
+.track-row-body {
+  min-width: 0;
+}
+
+.track-row-body h3 {
+  margin-top: 0;
+  margin-bottom: 0.4rem;
+  overflow-wrap: break-word;
+}
+
+.track-desc {
+  color: var(--color-text-muted);
+  margin-bottom: 0;
+  overflow-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 .card-empty {
   color: var(--color-text-muted);
 }

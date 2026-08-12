@@ -24,8 +24,3 @@ weight = 2
 name = 'CV'
 pageRef = '/cv/'
 weight = 3
-
-[[menus.main]]
-name = 'Music'
-pageRef = '/music/'
-weight = 4

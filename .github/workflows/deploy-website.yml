@@ -38,9 +38,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Fetch music from SoundCloud
-        run: bash scripts/fetch-music.sh
-
       - name: Build site
         run: hugo --source . --minify
 

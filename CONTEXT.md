@@ -11,7 +11,3 @@ _Avoid_: Pinned repo (no longer sourced from GitHub's pinned-items feature — t
 **CV**:
 The page listing work and education history as two flat lists. Replaces the old "Work" page, which covered work history only.
 _Avoid_: Work page, resume.
-
-**Track**:
-An entry on the Music page: a row with a title, an optional description, and a link that opens the SoundCloud track in a new tab. Backed by a headless content file (`content/music/<slug>.md`) holding a SoundCloud track URL and a manually-entered release date — title, description, and other metadata are resolved from SoundCloud's oembed endpoint by CI and stored in a generated data file, keyed by URL. Same shape as Project, one context down (SoundCloud instead of GitHub).
-_Avoid_: Playlist, set (Track scope is individual tracks only). Embed, player (rows link out; they don't embed SoundCloud's player inline).

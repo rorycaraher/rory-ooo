@@ -8,4 +8,4 @@ Software engineer with 12 years of experience, spent mostly in platform engineer
 
 I build systems and tooling that make other engineers faster, and production harder to break.
 
-I'm also a musician - electronic music as [NLTL](/music/), drums in [Berlin Jazz Workshop](https://www.instagram.com/theberlinjazzworkshop).
+I'm also a musician - electronic music as [NLTL](https://soundcloud.com/nothinglefttolearn), drums in [Berlin Jazz Workshop](https://www.instagram.com/theberlinjazzworkshop).

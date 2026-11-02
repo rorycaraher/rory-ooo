@@ -20,19 +20,18 @@ Platform/infrastructure depth: 12 years of experience concentrated in platform e
 
 ## Operating Context
 
-Hugo static site with a custom unpublished theme (`rorycaraher`), deployed to GitHub Pages via CI on push to `main`. The Projects page is data-driven: `content/projects/<slug>.md` stubs hold only a GitHub repo URL, and CI (`scripts/fetch-projects.sh`) resolves each project's name/description from the GitHub API into `data/projects.yaml` at build time. The Music page follows the same pattern: `content/music/<slug>.md` stubs hold a SoundCloud track URL and release date, and CI (`scripts/fetch-music.sh`) resolves each track's title/description from SoundCloud's public oembed endpoint into `data/music.yaml` at build time.
+Hugo static site with a custom unpublished theme (`rorycaraher`), deployed to GitHub Pages via CI on push to `main`. The Projects page is data-driven: `content/projects/<slug>.md` stubs hold only a GitHub repo URL, and CI (`scripts/fetch-projects.sh`) resolves each project's name/description from the GitHub API into `data/projects.yaml` at build time.
 
 ## Capabilities and Constraints
 
-- Site is scoped to homepage (bio) + Projects (GitHub-linked cards) + CV (Work/Education lists) + Music (SoundCloud-linked track list). No blog or case-study section is planned — don't propose one.
+- Site stays scoped to homepage (bio) + Projects (GitHub-linked cards) + CV (Work/Education lists). No blog or case-study section is planned — don't propose one.
 - The Projects list is an explicitly curated set of repo URLs, not GitHub's pinned-items feature (see `docs/adr/0001-projects-sourced-from-explicit-repo-list.md`). Future work must not reintroduce auto-pinning.
-- The Music list is likewise an explicitly curated set of SoundCloud track URLs, resolved via SoundCloud's public oembed endpoint rather than its official (subscription-gated) API (see `docs/adr/0002-music-sourced-from-explicit-track-list-not-official-api.md`). Future work must not reintroduce auto-enumerating "all public tracks" from the account.
 - No testimonials, client quotes, user counts, or performance benchmarks exist. None should be fabricated in future design or content work.
 
 ## Brand Commitments
 
 - Name: Rory Caraher.
-- Secondary personal facet: musician — electronic music as NLTL (SoundCloud), drums in Berlin Jazz Workshop. Now has its own Music page (track list linking out to SoundCloud), referenced from the homepage bio, but placed last in the nav (after CV) and still treated as texture, not the site's primary positioning.
+- Secondary personal facet, currently surfaced in the homepage bio only: musician — electronic music as NLTL (SoundCloud), drums in Berlin Jazz Workshop. Treated as color/context, not the site's primary positioning.
 
 ## Evidence on Hand
 

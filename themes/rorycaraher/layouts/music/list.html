@@ -1,0 +1,19 @@
+{{ define "main" }}
+<h1>{{ .Title }}</h1>
+{{ .Content }}
+
+{{ $hasTracks := false }}
+<ul>
+    {{ range .Pages }}
+    {{ $track := .Params.track }}
+    {{ $date := .Date | time.Format "Jan 2006" }}
+    {{ with index site.Data.music $track }}
+    {{ $hasTracks = true }}
+    {{ partial "row.html" (dict "href" $track "label" $date "title" .title "description" .description) }}
+    {{ end }}
+    {{ end }}
+</ul>
+{{ if not $hasTracks }}
+<p class="empty">No tracks to show right now.</p>
+{{ end }}
+{{ end }}

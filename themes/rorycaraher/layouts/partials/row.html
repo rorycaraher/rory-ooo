@@ -1,0 +1,19 @@
+{{- /*
+Renders one external-link row in a project or track list.
+
+@context {string} href The link target.
+@context {string} label The short left-hand label (language, date). Optional.
+@context {string} title The row title.
+@context {string} description The row description. Optional.
+
+@example: {{ partial "row.html" (dict "href" $url "label" "Go" "title" "retainer" "description" "Notes.") }}
+*/ -}}
+<li>
+  <a class="row" href="{{ .href }}" target="_blank" rel="noopener noreferrer">
+    <span class="row-label">{{ with .label }}{{ . }}{{ end }}</span>
+    <div>
+      <h2>{{ .title }}</h2>
+      {{ with .description }}<p class="row-desc">{{ . }}</p>{{ end }}
+    </div>
+  </a>
+</li>

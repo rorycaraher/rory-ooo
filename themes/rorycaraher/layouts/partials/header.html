@@ -1,6 +1,2 @@
-<div class="mg-container mg-row mg-x--middle mg-x--between">
-    <p class="mg-site-title">{{ site.Title }}</p>
-    <div class="mg-nav">
-        {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
-    </div>
-</div>
+<a class="site-title" href="{{ "/" | relURL }}">{{ site.Title }}</a>
+{{ partial "menu.html" (dict "menuID" "main" "page" .) }}

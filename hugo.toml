@@ -11,11 +11,6 @@ disableKinds = ['taxonomy', 'term']
   soundcloud = "https://soundcloud.com/nothinglefttolearn/"
 
 [[menus.main]]
-name = 'Home'
-pageRef = '/'
-weight = 1
-
-[[menus.main]]
 name = 'Projects'
 pageRef = '/projects/'
 weight = 2

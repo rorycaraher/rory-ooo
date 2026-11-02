@@ -3,21 +3,17 @@
 {{ .Content }}
 
 {{ $hasTracks := false }}
-<div class="track-list">
+<ul>
     {{ range .Pages }}
     {{ $track := .Params.track }}
+    {{ $date := .Date | time.Format "Jan 2006" }}
     {{ with index site.Data.music $track }}
     {{ $hasTracks = true }}
-    <a class="track-row" href="{{ $track }}" target="_blank" rel="noopener noreferrer">
-        <span class="track-row-body">
-            <h3>{{ .title }}</h3>
-            {{ with .description }}<p class="track-desc">{{ . }}</p>{{ end }}
-        </span>
-    </a>
+    {{ partial "row.html" (dict "href" $track "label" $date "title" .title "description" .description) }}
     {{ end }}
     {{ end }}
-</div>
+</ul>
 {{ if not $hasTracks }}
-<p class="card-empty">No tracks to show right now.</p>
+<p class="empty">No tracks to show right now.</p>
 {{ end }}
 {{ end }}

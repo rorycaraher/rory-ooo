@@ -3,22 +3,16 @@
 {{ .Content }}
 
 {{ $hasProjects := false }}
-<div class="project-list">
+<ul>
     {{ range .Pages }}
     {{ $repo := .Params.repo }}
     {{ with index site.Data.projects $repo }}
     {{ $hasProjects = true }}
-    <a class="project-row" href="{{ $repo }}" target="_blank" rel="noopener noreferrer">
-        <span class="project-lang">{{ with .language }}{{ . }}{{ end }}</span>
-        <span class="project-row-body">
-            <h3>{{ .name }}</h3>
-            <p class="project-desc">{{ .description }}</p>
-        </span>
-    </a>
+    {{ partial "row.html" (dict "href" $repo "label" .language "title" .name "description" .description) }}
     {{ end }}
     {{ end }}
-</div>
+</ul>
 {{ if not $hasProjects }}
-<p class="card-empty">No projects to show right now.</p>
+<p class="empty">No projects to show right now.</p>
 {{ end }}
 {{ end }}

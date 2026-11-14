@@ -16,6 +16,6 @@ pageRef = '/projects/'
 weight = 2
 
 [[menus.main]]
-name = 'CV'
-pageRef = '/cv/'
+name = 'Career'
+pageRef = '/career/'
 weight = 3

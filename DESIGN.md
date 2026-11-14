@@ -87,7 +87,7 @@ The page is type and space. Structure comes from size, tone, and whitespace, so 
 ### Neutral
 - **Charcoal Ink** (`#18181b`): Page background, and the only surface color.
 - **Pale Fog** (`#dadada`): Primary text, including all headings and the site title, and the hover color for links.
-- **Stone Grey** (`#a7a7a7`): Secondary text: row labels and descriptions, CV detail bullets, footer copy, and resting nav links.
+- **Stone Grey** (`#a7a7a7`): Secondary text: row labels and descriptions, Career detail bullets and dates, footer copy, and resting nav links.
 
 ### Named Rules
 **The One Signal Rule.** Active Violet is the only color allowed to mean "interactive" or "active." It is never used decoratively and never doubled up with a second accent. Page headings are neutral.
@@ -101,9 +101,9 @@ The page is type and space. Structure comes from size, tone, and whitespace, so 
 ### Hierarchy
 - **Display** (`clamp(2.8rem, 6vw, 3.2rem)`, line-height 1.2, letter-spacing -0.02em): `h1`, the page title.
 - **Lead** (2rem, line-height 1.5): the homepage's opening paragraph.
-- **Title** (1.8rem, line-height 1.4, letter-spacing -0.02em): `h2`, for CV sections and row titles.
+- **Title** (1.8rem, line-height 1.4, letter-spacing -0.02em): `h2`, for Career sections and row titles.
 - **Body** (1.6rem, line-height 1.6): all running text.
-- **Caption** (1.4rem, line-height 1.6): row labels and the footer, in Stone Grey.
+- **Caption** (1.4rem, line-height 1.6): row labels, Career dates, and the footer, in Stone Grey.
 
 ### Named Rules
 **The Weightless Hierarchy Rule.** Every weight is 300. Never introduce a heavier weight for emphasis, because the font file ships only that weight and bold would compete with the accent. `<strong>` gets color (Active Violet), not boldness.
@@ -138,8 +138,8 @@ Flat by design. State is conveyed by text color alone, always with a `0.15s ease
 - **Composition:** the entire row is one link. A Caption label (language, or release date) sits in a fixed `10rem` column at 600px and up and stacks above the title below that. Then a Title in Active Violet, and an optional Body description in Stone Grey with a 2-line clamp.
 - **Hover/Focus:** the title moves to Pale Fog.
 
-### CV
-Plain markdown lists with the bullets removed. Top-level entries are Pale Fog, and nested detail is Stone Grey. No indentation.
+### Career
+Plain markdown lists. Top-level entries (role, company) are Pale Fog and unbulleted, with the date range on its own line below in Caption-size Stone Grey (written as `*emphasis*` in the markdown, rendered upright). Nested detail lines are Stone Grey with disc bullets.
 
 ### Footer
 Copyright and social links (GitHub / LinkedIn / SoundCloud), Caption size, Stone Grey, in a space-between row that wraps on narrow viewports. Footer links keep their `0.4rem` vertical padding to clear the 24px minimum tap target.

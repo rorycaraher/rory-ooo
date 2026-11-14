@@ -155,7 +155,7 @@ nav .active a {
   color: var(--color-primary);
 }
 
-/* Lists: the CV's markdown and the project/track rows share this rhythm */
+/* Lists: the Career page's markdown and the project/track rows share this rhythm */
 
 main ul {
   margin: 0;
@@ -178,6 +178,20 @@ main li ul {
 
 main li li + li {
   margin-top: 0.8rem;
+}
+
+/* Career: dates sit on their own line under each entry, detail lines get bullets */
+
+.career li > em {
+  display: block;
+  color: var(--color-text-muted);
+  font-size: 1.4rem;
+  font-style: normal;
+}
+
+.career li ul {
+  padding-left: 1.8rem;
+  list-style: disc;
 }
 
 /* Home */

@@ -35,7 +35,7 @@ Hugo static site with a custom unpublished theme (`rorycaraher`), deployed to Gi
 
 ## Evidence on Hand
 
-- CV work history (getolo, Y42, BrowserStack, Together Digital) and education (NUI Maynooth) in `content/cv/_index.md` — real, factual.
+- CV work history (getolo, Y42, BrowserStack, Together Digital) and education (NUI Maynooth) in `content/career/_index.md` — real, factual.
 - Project repos linked from GitHub (`github.com/rorycaraher/*`); descriptions are resolved live from the GitHub API, not authored copy.
 - Social links: GitHub, LinkedIn, SoundCloud (`hugo.toml` params).
 - No testimonials, metrics, or press exist — do not invent any.

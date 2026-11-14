@@ -1,36 +1,37 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Hugo static site for rory.ooo. The theme lives in the repo at `themes/rory-ooo/` (a regular directory, not a submodule).
 
-## What this is
+## Requirements
 
-A Hugo static site (rorycaraher.com) using a custom, unpublished theme (`rorycaraher`) that lives at `themes/rorycaraher/` directly in this repo — despite the empty `.gitmodules` file, it is a regular tracked directory, not a git submodule.
+- Hugo extended **0.153.3** (pinned in CI). A newer local Hugo may behave differently.
+- `bash`, `curl`, `jq` and a `GITHUB_TOKEN` only if you need to fetch project data locally.
+- No Node, no package.json, no JavaScript. CSS goes through Hugo Pipes only.
 
 ## Commands
 
-- `hugo server -D` — run the local dev server with drafts (http://localhost:1313/)
-- `hugo --minify` — production build, outputs to `public/` (gitignored)
-- `hugo new posts/<slug>.md` — scaffold a new blog post using `archetypes/posts.md`
-- No test suite, linter, or package.json — there is no JS/CSS build tooling beyond Hugo's own asset pipeline (`resources.Get` + `minify`/`fingerprint` in the theme's `head/css.html` partial).
-- CI (`.github/workflows/deploy-website.yml`) pins `hugo-version: 0.153.3` (extended) and deploys `public/` to GitHub Pages on push to `main`. The locally installed Hugo may be a newer version — if a template feature behaves unexpectedly, check compatibility against 0.153.3.
+- `hugo server -D`: dev server at http://localhost:1313/
+- `hugo --minify`: production build to `public/` (gitignored)
+- `GITHUB_TOKEN=... bash scripts/fetch-projects.sh`: populate `data/projects.yaml`
 
-## Architecture
+## Testing
 
-- **Content** (`content/`) lives in TOML front matter (`+++` delimited), not YAML/JSON. Sections: `_index.md` (home, freeform markdown body — no front matter params beyond title/date/draft), `career/_index.md` (the Career page, formerly CV — still served at `/cv/` via an alias; Work + Education history as bullet lists under `##` headings, each entry `Role, Company *dates*` with the emphasised date range styled as a muted line by `.career li > em`, rendered as `.Content` inside a single markdown page by `career/list.html` — not individual pages per job), `projects/_index.md` + `projects/<slug>.md` (see below).
-- **Projects** are a headless content type: each `content/projects/<slug>.md` holds only a `repo` front-matter param (the GitHub URL) plus `[build]` `render = "never"` / `list = "always"`, so it never gets its own routable page — it exists purely as data for `themes/rorycaraher/layouts/projects/list.html` to range over. That template joins each stub's `repo` URL against `site.Data.projects` (a `data/projects.yaml` map keyed by URL, holding `name`/`description`) to render one row per project (via the shared `partials/row.html`), with the whole row a link that opens the repo in a new tab.
-- `data/projects.yaml` is generated in CI by `scripts/fetch-projects.sh`, which reads the `repo` URLs out of `content/projects/*.md` and resolves each one's name/description via the GitHub REST API (`GET /repos/{owner}/{repo}`) — not GitHub's pinned-items feature (see `docs/adr/0001-projects-sourced-from-explicit-repo-list.md`). The file carries a "do not edit manually" header and is empty in git until CI (or a local run with `GITHUB_TOKEN` set) populates it. To list a new project, add a `content/projects/<slug>.md` stub with its `repo` URL — don't edit `data/projects.yaml` directly.
-- **Music** follows the identical headless pattern one level down: each `content/music/<slug>.md` holds a `track` param (the SoundCloud track or playlist URL — named `track`, not `url`, because Hugo reserves the `url` front-matter key for overriding a page's own permalink) plus a `date` param (the track's release date, used to sort newest-first) and the same `render = "never"` / `list = "always"` build block. `themes/rorycaraher/layouts/music/list.html` joins each stub's `track` against `site.Data.music` (a `data/music.yaml` map keyed by URL, holding `title`/`description`) to render one text-only row per track (same `partials/row.html`, with the release date as its label) — no artwork, no embedded player — linking out to SoundCloud in a new tab.
-- `data/music.yaml` is generated in CI by `scripts/fetch-music.sh`, which reads the `track` values out of `content/music/*.md` and resolves each one's title/description via SoundCloud's public, keyless `oembed` endpoint — not SoundCloud's official (subscription-gated) API (see `docs/adr/0002-music-sourced-from-explicit-track-list-not-official-api.md`). Same "do not edit manually" / empty-until-CI convention as `data/projects.yaml`. To list a new track, add a `content/music/<slug>.md` stub with its `track` URL and `date` — don't edit `data/music.yaml` directly.
-- **Layouts** follow standard Hugo lookup order under `themes/rorycaraher/layouts/`: `_default/baseof.html` is the shared shell (header/main/footer), with `_default/home.html`, `_default/list.html`, `_default/single.html`, and section-specific `projects/list.html`, `music/list.html` and `career/list.html` overriding `main`. The site is dark-only, set by `color-scheme` and the color tokens in `main.css`.
-- **Nav menu** (`partials/menu.html`) is a flat list driven entirely by `[[menus.main]]` entries in `hugo.toml` — don't hardcode nav links in templates, add/edit menu entries in `hugo.toml` instead. Active-page highlighting relies on `class="active"` being on the `<li>` (not the `<a>`), paired with CSS in `main.css` targeting `nav .active a`. There is no Home entry: the site title in the header links home.
-- **CSS**: `themes/rorycaraher/assets/css/main.css` is the only stylesheet, holding the color tokens and all styles. It is processed through Hugo Pipes (minify + fingerprint in production, raw `<link>` in `development` env) via `partials/head/css.html`. `DESIGN.md` documents the design rules it implements.
-- **JS**: none. The site ships no JavaScript.
+There is no test suite or linter. To check a change, run `hugo --minify` and make sure it builds without errors or warnings, then look at the result in `hugo server`.
 
-## Working with `docs/agents/`
+## Where things are
 
-This repo has Claude Code agent-skill config docs:
-- `docs/agents/domain.md` — describes a `CONTEXT.md`/`docs/adr/` domain-modeling convention. Both now exist at the repo root: `CONTEXT.md` defines the "Project" and "Career" terms, `docs/adr/` holds one ADR (`0001-projects-sourced-from-explicit-repo-list.md`) on why Projects data comes from an explicit repo list rather than GitHub's pinned items.
+- `hugo.toml`: site config and the nav menu (`[[menus.main]]`). Add nav links here, not in templates.
+- `content/`: markdown with TOML front matter (`+++`).
+  - `_index.md`: homepage
+  - `career/_index.md`: Career page (old `/cv/` URL aliased to it). Entries are `Role, Company *dates*`; the italic date is styled as a muted line.
+  - `projects/<slug>.md`: one stub per project (see below)
+- `themes/rory-ooo/layouts/`: `_default/baseof.html` is the page shell; `projects/` and `career/` have their own `list.html`. `partials/row.html` renders project rows.
+- `themes/rory-ooo/assets/css/main.css`: the only stylesheet.
+- `themes/rory-ooo/static/`: favicon and font.
+- `.github/workflows/deploy-website.yml`: on push to `main`, fetches projects, builds and deploys to GitHub Pages.
 
-## Stale planning files
+## How projects are fetched
 
-`PRD.md` and `progress.txt` document an even earlier redesign (dark theme, dedicated `/projects/` and `/music/` pages, a `soundcloud` shortcode) than the one currently in place. The site briefly consolidated Projects and Music into a single `/extras/` section, then split again: as of this writing there's a dedicated `/projects/` page (GitHub-linking cards only, no music) and Music was folded into the homepage's freeform body instead of getting its own page. Don't treat `PRD.md`/`progress.txt` as a description of current architecture; the Architecture section above reflects what's actually in place.
+Each `content/projects/<slug>.md` holds only a `repo` GitHub URL and a `[build]` block (`render = "never"`, `list = "always"`), so it has no page of its own. In CI, `scripts/fetch-projects.sh` reads those URLs, calls the GitHub REST API (`GET /repos/{owner}/{repo}`) for each, and writes name/description/language to `data/projects.yaml`, keyed by URL. `projects/list.html` joins the stubs against that data.
+
+To add a project, add a stub with its `repo` URL. Never edit `data/projects.yaml` by hand; it is generated.

@@ -155,7 +155,7 @@ nav .active a {
   color: var(--color-primary);
 }
 
-/* Lists: the Career page's markdown and the project/track rows share this rhythm */
+/* Lists: the Career page's markdown and the project rows share this rhythm */
 
 main ul {
   margin: 0;
@@ -201,7 +201,7 @@ main li li + li {
   line-height: 1.5;
 }
 
-/* Project and track rows */
+/* Project rows */
 
 .row {
   display: block;

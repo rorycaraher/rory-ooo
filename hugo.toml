@@ -1,7 +1,7 @@
-baseURL = 'https://www.rorycaraher.com/'
+baseURL = 'https://rory.ooo/'
 languageCode = 'en-us'
 title = 'Rory Caraher'
-theme = 'rorycaraher'
+theme = 'rory-ooo'
 copyright = '© 2026 Rory Caraher'
 disableKinds = ['taxonomy', 'term']
 
